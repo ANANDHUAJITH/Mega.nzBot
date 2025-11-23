@@ -9,12 +9,12 @@ else:
     log_channel = None
 
 class Config(object):
-    APP_ID = int(os.environ.get("APP_ID", 1234567))
-    API_HASH = os.environ.get("API_HASH", "")
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
+    APP_ID = int(os.environ.get("APP_ID", 37423470))
+    API_HASH = os.environ.get("API_HASH", "eeef73ca03d2707c0e4d0fa1d19472b0")
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "8206336257:AAFgOOiUMDx_6KsYf5pILaNDqScwjWwF1GU")
     AUTH_USERS = set(int(x) for x in os.environ.get("AUTH_USERS", "").split())
     DOWNLOAD_LOCATION = "./NexaBots"
-    IS_PUBLIC_BOT = os.environ.get("IS_PUBLIC_BOT", "False")
+    IS_PUBLIC_BOT = os.environ.get("IS_PUBLIC_BOT", "True")
     LOGS_CHANNEL = log_channel
     TG_MAX_SIZE = 2040108421
     # Mega User Account
