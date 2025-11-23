@@ -1,7 +1,6 @@
 pyrogram
 TgCrypto
 filetype
-fsplit
-filesplit
+
 wget
 git+https://github.com/ANANDHUAJITH/pyro-mega.py.git
