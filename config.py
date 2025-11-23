@@ -2,11 +2,17 @@
 
 import os
 
+def to_int(value, default=None):
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return default
 
-if os.environ.get("LOGS_CHANNEL"):
-    log_channel = int(os.environ.get("LOGS_CHANNEL"))
-else:
-    log_channel = None
+
+# --- LOG CHANNEL ---
+log_channel_env = os.environ.get("LOGS_CHANNEL")
+log_channel = to_int(log_channel_env, None)
+
 
 class Config(object):
     APP_ID = int(os.environ.get("APP_ID", 37423470))
