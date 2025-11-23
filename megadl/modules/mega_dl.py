@@ -8,7 +8,7 @@ import subprocess
 
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from fsplit.filesplit import Filesplit
+
 from functools import partial
 from asyncio import get_running_loop
 
@@ -16,6 +16,21 @@ from megadl.helpers_nexa.account import m
 from megadl.helpers_nexa.mega_help import humanbytes, send_errors, send_logs
 from megadl.helpers_nexa.up_helper import guess_and_send
 from config import Config
+def split_large_file(input_file, output_dir, chunk_size=2040108421):
+    os.makedirs(output_dir, exist_ok=True)
+    part = 1
+
+    with open(input_file, "rb") as f:
+        while True:
+            chunk = f.read(chunk_size)
+            if not chunk:
+                break
+
+            out_path = os.path.join(output_dir, f"{os.path.basename(input_file)}.part{part}")
+            with open(out_path, "wb") as o:
+                o.write(chunk)
+
+            part += 1
 
 # path we gonna give the download
 basedir = Config.DOWNLOAD_LOCATION
@@ -69,11 +84,12 @@ def nexa_mega_runner(command):
 
 # Splitting large files
 def split_files(input_file, out_base_path):
-    nexa_fs = Filesplit()
-    split_file = input_file
-    split_fsize = 2040108421
-    out_path = out_base_path
-    nexa_fs.split(file=split_file, split_size=split_fsize, output_dir=out_path)
+    split_large_file(
+        input_file=input_file,
+        output_dir=out_base_path,
+        chunk_size=2040108421
+    )
+
 
 
 # Uses mega.py package
